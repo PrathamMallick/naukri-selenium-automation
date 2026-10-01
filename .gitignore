@@ -1,0 +1,40 @@
+# Maven
+target/
+.mvn/wrapper/maven-wrapper.jar
+
+# Java
+*.class
+*.log
+hs_err_pid*
+
+# IDE - IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# IDE - Eclipse
+.classpath
+.project
+.settings/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment / secrets
+.env
+*.env
+
+# Selenium / browser profiles
+.naukri-chrome-profile/
+
+# Test output
+screenshots/
+test-output/
+
+# Temporary files
+*.tmp
