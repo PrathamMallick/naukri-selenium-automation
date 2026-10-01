@@ -3,46 +3,37 @@ package com.pratham.naukri;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-import com.pratham.naukri.utils.DriverFactory;
+import com.pratham.naukri.base.BaseTest;
+import com.pratham.naukri.pages.NaukriHomePage;
 
-public class NaukriLoginTest {
+public class NaukriLoginTest extends BaseTest {
 
     @Test
-    public void loginToNaukri() {
+    public void verifyNaukriLogin() {
 
-        WebDriver driver = DriverFactory.createDriver();
-        driver.manage().window().maximize();
+        NaukriHomePage homePage = new NaukriHomePage(driver);
 
-        try {
-            driver.get("https://www.naukri.com/");
+        homePage.open();
 
-            WebDriverWait wait = new WebDriverWait(
-                    driver,
-                    Duration.ofSeconds(120)
-            );
+        WebDriverWait wait = new WebDriverWait(
+                driver,
+                Duration.ofSeconds(30)
+        );
 
-            System.out.println("Naukri opened.");
-            System.out.println("Please log in manually if required.");
+        wait.until(
+                ExpectedConditions.or(
+                        ExpectedConditions.urlContains("/mnjuser"),
+                        ExpectedConditions.presenceOfElementLocated(
+                                By.xpath("//div[contains(@class,'view-profile')]")
+                        )
+                )
+        );
 
-            wait.until(
-                    ExpectedConditions.or(
-                            ExpectedConditions.urlContains("/mnjuser"),
-                            ExpectedConditions.presenceOfElementLocated(
-                                    By.xpath("//div[contains(@class,'view-profile')]")
-                            )
-                    )
-            );
-
-            System.out.println("Login successful!");
-            System.out.println("Current URL: " + driver.getCurrentUrl());
-
-        } finally {
-            driver.quit();
-        }
+        System.out.println("Naukri login verified.");
+        System.out.println("Current URL: " + driver.getCurrentUrl());
     }
 }
