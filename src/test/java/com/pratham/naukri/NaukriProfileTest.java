@@ -10,8 +10,7 @@ public class NaukriProfileTest extends BaseTest {
     @Test
     public void updateResumeIfRequired() {
 
-        NaukriProfilePage profilePage =
-                new NaukriProfilePage(driver);
+        NaukriProfilePage profilePage = new NaukriProfilePage(driver);
 
         profilePage.openProfile();
 
