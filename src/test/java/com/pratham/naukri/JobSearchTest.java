@@ -8,6 +8,7 @@ import com.pratham.naukri.base.BaseTest;
 import com.pratham.naukri.models.Job;
 import com.pratham.naukri.pages.JobSearchPage;
 import com.pratham.naukri.pages.NaukriHomePage;
+import com.pratham.naukri.utils.ConfigReader;
 
 public class JobSearchTest extends BaseTest {
 
@@ -22,11 +23,13 @@ public class JobSearchTest extends BaseTest {
 
         jobSearchPage.openSearch();
 
-        jobSearchPage.selectJobType("job");
+        String jobType = ConfigReader.get("job.type");
+        String keywords = ConfigReader.get("job.keywords");
+        String locations = ConfigReader.get("job.locations");
 
-        jobSearchPage.enterKeywords("Quality Assurance, QA, Selenium");
-
-        jobSearchPage.enterLocation("Mumbai");
+        jobSearchPage.selectJobType(jobType);
+        jobSearchPage.enterKeywords(keywords);
+        jobSearchPage.enterLocation(locations);
 
         jobSearchPage.search();
 
