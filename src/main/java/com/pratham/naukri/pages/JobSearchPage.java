@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.pratham.naukri.models.Job;
+import com.pratham.naukri.utils.ConfigReader;
 
 public class JobSearchPage {
 
@@ -45,6 +46,20 @@ public class JobSearchPage {
 
     public void openSearch() {
         wait.until(ExpectedConditions.elementToBeClickable(openSearchButton)).click();
+    }
+
+    public void performConfiguredSearch() {
+
+        String jobType = ConfigReader.get("job.type");
+
+        String keywords = ConfigReader.get("job.keywords");
+
+        String locations = ConfigReader.get("job.locations");
+
+        selectJobType(jobType);
+        enterKeywords(keywords);
+        enterLocation(locations);
+        search();
     }
 
     public void selectJobType(String type) {
